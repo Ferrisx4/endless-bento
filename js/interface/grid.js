@@ -40,8 +40,24 @@ function redrawGrid()
 // the alt-text so that the game can be played without images
 function setTile(x, y)
 {
+    if (globalSelectedColor == -1)
+    {
+        colorToUse = 'x';
+    }
+    else
+    {
+        colorToUse = globalSelectedColor;
+    }
+    if (globalSelectedShape == -1)
+    {
+        shapeToUse = 'x';
+    }
+    else
+    {
+        shapeToUse = globalSelectedShape;
+    }
     // set the three main things
-	globalPlayerGrid[x][y] = globalSelectedColor + '-' + globalSelectedShape;
+	globalPlayerGrid[x][y] = colorToUse + '-' + globalSelectedShape;
 	document.getElementById(x + '-' + y).src = "./tiles/" + globalPlayerGrid[x][y] + ".png";
 	document.getElementById(x + '-' + y).alt = globalPlayerGrid[x][y];
 
@@ -54,7 +70,7 @@ function setTile(x, y)
 
     // at this point we are done setting the grid. the rest of this function is cycling through the selection options
 	// cycle through the different tile selections depending on the setting and if we are currently on delete (don't cycle delete)
-	if(globalSelectedColor != 'x')
+	if(colorToUse != 'x')
 	{
 	    switch(globalSettingAutoSelect)
         {
@@ -74,9 +90,9 @@ function setTile(x, y)
         // color
         case 'c':
             // the number of possible shapes is dependent on the grid width (because non-square grids are valid)
-            if(Number(globalSelectedColor) < GRID_SIZE_W - 1)
+            if(Number(colorToUse) < GRID_SIZE_W - 1)
             {
-                setColor(String(Number(globalSelectedColor) + 1));
+                setColor(String(Number(colorToUse) + 1));
             }
             else
             {
