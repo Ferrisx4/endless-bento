@@ -4,12 +4,12 @@ var GRID_SIZE_H = 3;    // also, the number of shapes
 var DIFFICULTY = 1;     // 0 for jr, 1 for sr, 2 for master
 
 // global interface settings
-var globalSettingAutoSelect = "s"    // c for color, s for shape, n for none
+var globalSettingAutoSelect = "n"    // c for color, s for shape, n for none
 var globalIsDarkBackground = false;
 
 // these are for the buttons
-var globalSelectedColor = '0';
-var globalSelectedShape = '0';
+var globalSelectedColor = '-1';
+var globalSelectedShape = '-1';
 var globalOldSelectedColor = '0';
 var globalOldSelectedShape = '0';
 
@@ -17,6 +17,13 @@ var globalOldSelectedShape = '0';
 var globalPlayerGrid;
 var globalSolutionGrid;
 var globalClues = [];
+
+// Have we initiated yet?
+var globalInitColorDone = 0;
+var globalInitShapeDone = 0;
+
+// Are we in delete mode (x pressed)
+var globalDeleteMode = 0
 
 
 // main init function. runs on startup and is responsible for loading the settings and generating the first puzzle.
@@ -26,8 +33,14 @@ window.onload = function()
     setupGrid();
     setupButtons();
 
-    setColor('0');
-    setShape('0');
+    if (globalInitColorDone)
+    {
+        //setColor('0');
+    }
+    if (globalInitShapeDone)
+    {
+        // setShape('0');
+    }
 
   
     // now let's attempt to load the previous settings using cookies
