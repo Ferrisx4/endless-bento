@@ -42,7 +42,7 @@ window.onload = function()
         // setShape('0');
     }
 
-  
+
     // now let's attempt to load the previous settings using cookies
     // difficulty
     var c = getCookie("difficulty");
@@ -57,14 +57,14 @@ window.onload = function()
             document.getElementById("difficulty-mst").checked = true;
             DIFFICULTY = 2;
             break;
-            
+
         // default to senior
         default:
             document.getElementById("difficulty-sr").checked = true;
             DIFFICULTY = 1;
-            break;        
+            break;
     }
-    
+
     // autoselect
     c = getCookie("autosel");
     switch(c)
@@ -72,38 +72,38 @@ window.onload = function()
         case 'c':
             document.getElementById("autosel-color").checked = true;
             break;
-            
+
         case 'n':
             document.getElementById("autosel-off").checked = true;
             break;
-            
+
         // default to shape
         default:
             document.getElementById("autosel-shape").checked = true;
             break;
     }
-	
-	// width and height
-	c = getCookie("width");
-	if(Number(c) >= 2 && Number(c) <= 5)
-	{
-	    document.getElementById("size-w").value = Number(c);
-	}
-	else
-	{
-	    document.getElementById("size-w").value = 3;
-	}
-	
-	c = getCookie("height");
-	if(Number(c) >= 2 && Number(c) <= 5)
-	{
-	    document.getElementById("size-h").value = Number(c);
-	}
-	else
-	{
-	    document.getElementById("size-h").value = 3;
-	}
-    
+
+    // width and height
+    c = getCookie("width");
+    if(Number(c) >= 2 && Number(c) <= 5)
+    {
+        document.getElementById("size-w").value = Number(c);
+    }
+    else
+    {
+        document.getElementById("size-w").value = 3;
+    }
+
+    c = getCookie("height");
+    if(Number(c) >= 2 && Number(c) <= 5)
+    {
+        document.getElementById("size-h").value = Number(c);
+    }
+    else
+    {
+        document.getElementById("size-h").value = 3;
+    }
+
     // dark mode
     c = getCookie("dark-mode");
     globalIsDarkBackground = false;
@@ -115,11 +115,11 @@ window.onload = function()
     }
     else
     {
-        document.getElementById("dark-background-option").checked = false;		
+        document.getElementById("dark-background-option").checked = false;
     }
-	
-	
+
+
     // now that we've loaded the settings, let's generate a puzzle
     clearPlayerGrid();
     generatePuzzle();
-}
+};

@@ -1,11 +1,8 @@
 // these messy functions setup the html based on the size of the puzzle
 // we create a grid of any size, and create the appropriate number of buttons for all the tiles the grid can take
 
-// scale constant
-const SCALE_ROOT = 3;
-
 // this function creates the grid
-function setupGrid()
+function setupGrid(redraw)
 {
     // the grid should never be split up even on skinny monitors (phones)
     // there are two different scaling methods depending on if it is a wide monitor or a skinny one
@@ -20,11 +17,19 @@ function setupGrid()
     else
     {
         // skinny monitors always scale to the width. it is impossible for the width to fit and the height to not on a monitor that is taller than it is wide
-        scale = window.innerWidth / (GRID_SIZE_H + 1);
+        // for some reason 5 wide puzzles need to be scaled more than the others
+        if(GRID_SIZE_H > 4)
+        {
+            scale = window.innerWidth / (GRID_SIZE_H + 1.5);
+        }
+        else
+        {
+            scale = window.innerWidth / (GRID_SIZE_H + 1);
+        }
     }
     // but regardless of the mode we don't want the tiles to ever be larger than their true size (100). That would start to look weird and pixelated.
     // so this next line is there to make sure that if we do make a scale adjustment it is a scale down and never a scale up.
-    
+
     scale = Math.min(scale, 100);
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
@@ -55,14 +60,24 @@ function setupGrid()
 
     document.getElementById("grid").innerHTML = toAppend;
 
-    // now that the document contains the necessary number of tiles, let's update the internal array to match
-    clearPlayerGrid();
+
+    // if we passed a redraw argument we want to redraw the grid according to the array rather than clearing the internal array to match the newly created empty grid
+    // if we did not pass a redraw argument we just want to clear the internal array
+    if(redraw === undefined)
+    {
+        // now that the document contains the necessary number of tiles, let's update the internal array to match
+        clearPlayerGrid();
+    }
+    else
+    {
+        redrawGrid();
+    }
 }
 
 
 // this function creates the buttons
 function setupButtons()
-{     
+{
     // html time
     var toAppend = "";
     for(let i = 0; i < GRID_SIZE_W; i++)
@@ -92,8 +107,8 @@ function setupButtons()
     }
     toAppend += "&nbsp;<button id='x' class='game-button' onclick='setDelete()'><img class='tile-50' src='./tiles/delete.png' alt='x'></button>";
     document.getElementById("buttons").innerHTML = toAppend;
-    
-    
+
+
     // if the currently selected buttons are buttons that are about to disappear, set them back to the first option
     if(Number(globalSelectedColor) >= GRID_SIZE_W)
     {
@@ -105,7 +120,7 @@ function setupButtons()
     {
         setColor(globalSelectedColor);
     }
-    
+
     if(Number(globalSelectedShape) >= GRID_SIZE_H)
     {
         globalSelectedShape = '0';

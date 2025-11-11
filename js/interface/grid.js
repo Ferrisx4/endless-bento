@@ -63,10 +63,10 @@ function setTile(x, y)
 
     // check if the puzzle has been solved
     if(equal(globalPlayerGrid, globalSolutionGrid))
-	{
-		// display the modal window
+    {
+        // display the modal window
         document.getElementById("modal-display").style.display = "block";
-	}
+    }
 
     // at this point we are done setting the grid. the rest of this function is cycling through the selection options
 	// cycle through the different tile selections depending on the setting and if we are currently on delete (don't cycle delete)
@@ -105,7 +105,7 @@ function setTile(x, y)
             break;
 
         }
-	}
+    }
 }
 
 
@@ -124,3 +124,14 @@ function modalAction()
     document.getElementById("modal-display").style.display = "none";
     generatePuzzle();
 }
+
+
+
+// scale grid when window is resized
+// there are probably better ways to do this but this is simple enough
+var scaleTimeout;
+window.onresize = function()
+{
+    clearTimeout(scaleTimeout);
+    scaleTimeout = setTimeout(function() {setupGrid(true);}, 250);
+};

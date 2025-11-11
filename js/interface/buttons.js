@@ -141,12 +141,12 @@ function setDelete()
         e.className = "game-button";
     }
 
-	// set selected letter and number to x
-	globalOldSelectedShape = globalSelectedShape;
-	globalOldSelectedColor = globalSelectedColor;
+    // set selected letter and number to x
+    globalOldSelectedShape = globalSelectedShape;
+    globalOldSelectedColor = globalSelectedColor;
 
-	globalSelectedColor = 'x';
-	globalSelectedShape = 'x';
+    globalSelectedColor = 'x';
+    globalSelectedShape = 'x';
 
 	// set delete button to red
 	e = document.getElementById('x');
