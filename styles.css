@@ -4,7 +4,7 @@ body {
 	top: 0;
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	text-align: center;
-	background-color: #baffee;
+	background-color: #edabd5;
 }
 
 h1 {
@@ -36,7 +36,7 @@ a:link, a:visited {
 
 #header {
 	width: 100%;
-	background-color: #a9eedd;
+	background-color: #f29dd3;
 	top: 0;
 	padding-top: 0.3em;
 	padding-bottom: 0.3em;
@@ -75,7 +75,7 @@ a:link, a:visited {
 }
 
 #left-side .tile-50 {
-	background-color: #a9eedd;
+	background-color: #fbd6ed;
 }
 
 
@@ -92,7 +92,7 @@ a:link, a:visited {
 .tile-100 {
 	width: 100px;
 	height: 100px;
-	background-color: #bf6135;
+	background-color: #fbd6ed;
 }
 
 .tile-50 {
@@ -103,7 +103,7 @@ a:link, a:visited {
 
 /* buttons */
 .game-button {
-	background: #bf6135;
+	background: #fbd6ed;
 	border: none;
 
 	width: 50px;
